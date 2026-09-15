@@ -5,7 +5,7 @@ export const getAllArtists = (req, res) => {
   try {
     console.log("getAllArtists called from controller");
     const artists = getAllItems();
-    console.log("Artists retrieved:", artists);
+    //console.log("Artists retrieved:", artists);
     res.send(artists);
   } catch (error) {
     res.status(500).send({ message: error.message });
@@ -14,10 +14,8 @@ export const getAllArtists = (req, res) => {
 
 export const getArtistById = async (req, res) => {
   try {
-    const artist = await prisma.artist.findUnique({
-      where: { id: parseInt(req.params.id) },
-    });
-
+    const artist = getItemById(parseInt(req.params.id));
+   
     if (!artist) {
       return res.status(404).json({ message: "Artist not found" });
     }
