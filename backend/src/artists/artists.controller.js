@@ -3,9 +3,7 @@
 
 export const getAllArtists = (req, res) => {
   try {
-    console.log("getAllArtists called from controller");
     const artists = getAllItems();
-    //console.log("Artists retrieved:", artists);
     res.send(artists);
   } catch (error) {
     res.status(500).send({ message: error.message });

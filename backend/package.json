@@ -7,8 +7,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "pretest": "docker compose -f ./tests/docker-compose.test.yml up -d && dotenv -e .env.test -- npx prisma migrate dev --name init",
-    "test": "dotenv -e .env.test -- vitest run --pool=forks",
+    "pretest": "docker compose -f ./tests/docker-compose.test.yml up -d",
+    "test": "vitest run --pool=forks",
     "posttest": "docker compose -f ./tests/docker-compose.test.yml down -v",
     "test:run": "vitest run"
   },

@@ -2,9 +2,7 @@ import prisma from "../repository/prisma.js";
 
 export const getAllItems = async () => {
   try {
-    console.log("getAllItems called from model");
     const artists = await prisma.artists.findMany();
-    console.log("Artists retrieved:", artists);
     return artists;
   } catch (error) {
     throw new Error(error.message);
