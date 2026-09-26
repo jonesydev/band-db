@@ -10,7 +10,7 @@
     "pretest": "docker compose -f ./tests/docker-compose.test.yml up -d",
     "test": "vitest run --pool=forks",
     "posttest": "docker compose -f ./tests/docker-compose.test.yml down -v",
-    "test:run": "vitest run"
+    "test:run": "vitest"
   },
   "keywords": [],
   "author": "",

@@ -19,7 +19,7 @@ describe("GET /artists", () => {
 
 describe("GET /artists/:id", () => {
   it("should return a single artist by ID", async () => {
-    const response = await vi.waitFor(() => request(app).get("/artists/1 "), { timeout: 5000 , interval: 100 });    
+    const response = await vi.waitFor(() => request(app).get("/artists/5n"), { timeout: 5000 , interval: 100 });    
     //const response = await request(app).get("/artists/1");
     expect(response.status).toBe(200);
     //expect(response.body).toHaveProperty("id", 1);
