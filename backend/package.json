@@ -7,9 +7,9 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "pretest": "docker compose -f ./tests/docker-compose.test.yml up -d",
+    "pretest": "docker compose -f ./tests/docker-compose.test.yaml up -d",
     "test": "vitest run --pool=forks",
-    "posttest": "docker compose -f ./tests/docker-compose.test.yml down -v",
+    "posttest": "docker compose -f ./tests/docker-compose.test.yaml down -v",
     "test:run": "vitest"
   },
   "keywords": [],

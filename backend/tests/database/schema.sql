@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict lUHiSHw3GEqbbVwiMB0swnM2AY9BZBsPRrqWGcDObYK7awYWgWqeAkJQz0cCV04
+\restrict M4wJeDhwwavcGGI9JvDcniujF4n8a6HWg92npLEHIohi2jI8L0gLZyl58wfA21g
 
--- Dumped from database version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
--- Dumped by pg_dump version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
+-- Dumped from database version 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)
+-- Dumped by pg_dump version 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -22,14 +22,14 @@ SET row_security = off;
 -- Name: pg_jsonschema; Type: EXTENSION; Schema: -; Owner: -
 --
 
-CREATE EXTENSION IF NOT EXISTS pg_jsonschema WITH SCHEMA public;
+-- CREATE EXTENSION IF NOT EXISTS pg_jsonschema WITH SCHEMA public;
 
 
 --
 -- Name: EXTENSION pg_jsonschema; Type: COMMENT; Schema: -; Owner: 
 --
 
-COMMENT ON EXTENSION pg_jsonschema IS 'pg_jsonschema';
+-- COMMENT ON EXTENSION pg_jsonschema IS 'pg_jsonschema';
 
 
 SET default_tablespace = '';
@@ -44,13 +44,10 @@ CREATE TABLE public.albums (
     album_id bigint NOT NULL,
     album_name text,
     release_date date,
-    label text,
-    personnel jsonb,
     artist_id bigint NOT NULL,
-    CONSTRAINT check_column_schema CHECK (public.jsonb_matches_schema('{
-      "name": "string",
-      "role": "string"     
-   }'::json, personnel))
+    members bigint[],
+    label_id bigint[],
+    additional_personnel text[]
 );
 
 
@@ -77,13 +74,9 @@ ALTER TABLE public.albums ALTER COLUMN album_id ADD GENERATED ALWAYS AS IDENTITY
 CREATE TABLE public.artists (
     artist_id bigint NOT NULL,
     artist_name text,
-    albums jsonb,
     styles text[],
     influences text[],
-    CONSTRAINT check_column_schema CHECK (public.jsonb_matches_schema('{
-      "name": "string",
-      "year": "int"     
-   }'::json, albums))
+    artist_albums bigint[]
 );
 
 
@@ -111,12 +104,13 @@ CREATE TABLE public.labels (
     label_id bigint NOT NULL,
     label_name text,
     year_founded integer,
-    founder text[],
-    artists text[],
     is_active boolean,
     year_ended integer,
     origin text,
-    albums text[]
+    founders text[],
+    current_artists bigint[],
+    past_artists bigint[],
+    label_albums bigint[]
 );
 
 
@@ -150,10 +144,11 @@ CREATE TABLE public.members (
     date_of_death date,
     age integer,
     origin text,
-    other_projects jsonb,
+    projects text[],
     influences text[],
     years_with_artist text,
-    role text[]
+    roles text[],
+    suffix text
 );
 
 
@@ -252,5 +247,5 @@ GRANT SELECT ON TABLE public.members TO jonesy;
 -- PostgreSQL database dump complete
 --
 
-\unrestrict lUHiSHw3GEqbbVwiMB0swnM2AY9BZBsPRrqWGcDObYK7awYWgWqeAkJQz0cCV04
+\unrestrict M4wJeDhwwavcGGI9JvDcniujF4n8a6HWg92npLEHIohi2jI8L0gLZyl58wfA21g
 
