@@ -45,7 +45,7 @@ CREATE TABLE public.albums (
     album_name text,
     release_date date,
     artist_id bigint NOT NULL,
-    members bigint[],
+    members text[],
     label_id bigint[],
     additional_personnel text[]
 );
@@ -212,35 +212,35 @@ ALTER TABLE ONLY public.albums
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: pg_database_owner
 --
 
-GRANT USAGE ON SCHEMA public TO jonesy;
+--GRANT USAGE ON SCHEMA public TO jonesy;
 
 
 --
 -- Name: TABLE albums; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT SELECT ON TABLE public.albums TO jonesy;
+--GRANT SELECT ON TABLE public.albums TO jonesy;
 
 
 --
 -- Name: TABLE artists; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT SELECT ON TABLE public.artists TO jonesy;
+--GRANT SELECT ON TABLE public.artists TO jonesy;
 
 
 --
 -- Name: TABLE labels; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT SELECT ON TABLE public.labels TO jonesy;
+--GRANT SELECT ON TABLE public.labels TO jonesy;
 
 
 --
 -- Name: TABLE members; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT SELECT ON TABLE public.members TO jonesy;
+--GRANT SELECT ON TABLE public.members TO jonesy;
 
 
 --

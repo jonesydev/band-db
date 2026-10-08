@@ -15,7 +15,7 @@ export const getArtistById = async (req, res) => {
     const artist = getItemById(parseInt(req.params.id));
    
     if (!artist) {
-      return res.status(404).json({ message: "Artist not found" });
+      res.status(404).send({ message: "Artist not found" });
     }
 
     res.json(artist);
