@@ -11,10 +11,10 @@ describe("GET /artists", () => {
     //expect(Array.isArray(response.body)).toBe(true);
   });
 
-   test.afterAll(async () => {
-     // Close the db after all tests are done
-     await prisma.$disconnect();
-   }); 
+  // test.afterAll(async () => {
+  //    // Close the db after all tests are done
+  //    await prisma.$disconnect();
+  //  }); 
 });
 
 describe("GET /artists/:id", () => {
@@ -26,7 +26,8 @@ describe("GET /artists/:id", () => {
   });
 
   it("should return 404 if artist not found", async () => {
-    const response = await request(app).get("/artists/9999");
+    const response = await vi.waitFor(() => request(app).get("/artists/9999"), { timeout: 5000 , interval: 100 });
+    //const response = await request(app).get("/artists/9999");
     expect(response.status).toBe(404);
   });
 

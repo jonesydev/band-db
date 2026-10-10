@@ -1,9 +1,9 @@
  import {getAllItems, getItemById, createItem, updateItem, deleteItem} 
    from './artists.model.js';
 
-export const getAllArtists = (req, res) => {
+export const getAllArtists = async (req, res) => {
   try {
-    const artists = getAllItems();
+    const artists = await getAllItems();
     res.send(artists);
   } catch (error) {
     res.status(500).send({ message: error.message });
@@ -12,15 +12,16 @@ export const getAllArtists = (req, res) => {
 
 export const getArtistById = async (req, res) => {
   try {
-    const artist = getItemById(parseInt(req.params.id));
-   
+    const artist = await getItemById(parseInt(req.params.id));
+    console.log("artist:", artist);
     if (!artist) {
       res.status(404).send({ message: "Artist not found" });
     }
-
-    res.json(artist);
+    else {
+      res.send(artist);
+    }    
   } catch (error) {
-    res.status(500).json({ message: error.message });
+      res.status(500).send({ message: error.message });
   }
 };
 

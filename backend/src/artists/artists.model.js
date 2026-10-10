@@ -11,15 +11,20 @@ export const getAllItems = async () => {
 
 export const getItemById = async (id) => {
   try {
-    const artist = await prisma.artists.findUnique({
-      where: { id }
+    const artist = await prisma.artists.findFirst({
+      where: { artist_id: id }
     });
-    if (!artist) {
-      throw new Error("Artist not found");
-    }
+
     return artist;
+
+    // if (!artist) {
+    //   return ("Artist not found");
+    // }
+    // else {
+    //   return artist;
+    // }
   } catch (error) {
-    throw new Error(error.message);
+      next(error);
   }
 };
 
