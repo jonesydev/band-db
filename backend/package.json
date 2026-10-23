@@ -8,7 +8,7 @@
     "start": "tsx src/server.js",
     "dev": "nodemon src/server.js",
     "pretest": "docker compose -f ./tests/docker-compose.test.yaml up -d --build",
-    "test": "vitest run --pool=forks",
+    "test": "dotenv -e .env -- prisma db push --accept-data-loss && vitest run --pool=forks",
     "posttest": "docker compose -f ./tests/docker-compose.test.yaml down -v",
     "test:run": "vitest"
   },

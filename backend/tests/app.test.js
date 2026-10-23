@@ -1,7 +1,8 @@
+import "dotenv/config";
 import { describe, it, expect } from "vitest";
 import request from "supertest";
 import app from "../src/app.js";
-import prisma from "../src/repository/prisma.js";  
+import prisma from "../src/repository/prisma.js";
 
 describe("GET /artists", () => {
   it("should return a list of artists", async () => {
